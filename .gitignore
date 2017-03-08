@@ -1,0 +1,2 @@
+# Dont version ephemeral vagrant files
+**/.vagrant/
