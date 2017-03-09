@@ -1,0 +1,34 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Requires a copy of SQL Server 2012 R2 (iso)
+# https://www.microsoft.com/en-us/download/details.aspx?id=29066
+
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "opentable/win-2012r2-standard-amd64-nocm"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = true
+    # VS2017 requires 2.5G minimum when running on a VM
+    vb.memory = "2560"
+  end
+
+  # install VS2017 prerequisites
+  config.vm.provision "shell", path: "../SharedScripts/Windows/SystemConfig/disable_uac.ps1"
+  config.vm.provision "shell", path: "../SharedScripts/Windows/WindowsUpdates/win2012r2_kb2919442.ps1", upload_path: "C:/tmp/win2012r2_kb2919442"
+  config.vm.provision "shell", path: "../SharedScripts/Windows/WindowsUpdates/win2012r2_kb2919355.ps1", upload_path: "C:/tmp/win2012r2_kb2919355"
+  config.vm.provision "shell", inline: "Restart-Computer"
+  
+  # install VS2017 and mRemoteNG specific addons
+  config.vm.provision "shell", path: "../SharedScripts/Windows/VS2017/install_vs2017.ps1", upload_path: "C:/tmp/install_vs2017"
+  config.vm.provision "shell", path: "../SharedScripts/Windows/DotNet/install_dotnet_35_for_server.ps1", upload_path: "C:/tmp/install_dotnet35"
+  config.vm.provision "shell", path: "../SharedScripts/Windows/WixToolset/install_wix_toolset.ps1", upload_path: "C:/tmp/install_wixtoolset"
+
+  # clone mRemoteNG
+  config.vm.provision "shell", path: "../SharedScripts/Windows/git/install_git.ps1", upload_path: "C:/tmp/install_git"
+  config.vm.provision "shell", inline: <<-SHELL
+    git clone git://github.com/mRemoteNG/mRemoteNG.git
+  SHELL
+
+end
