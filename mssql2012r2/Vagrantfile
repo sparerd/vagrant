@@ -1,0 +1,24 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Requires a copy of SQL Server 2012 R2 (iso)
+# https://www.microsoft.com/en-us/download/details.aspx?id=29066
+
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "opentable/win-2008r2-standard-amd64-nocm"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = true
+    vb.memory = "2048"
+  end
+
+  config.vm.provision "shell", path: "../SharedScripts/Windows/SystemConfig/disable_uac.ps1", upload_path: "C:/tmp/disable_uac"
+  config.vm.provision "shell", path: "../SharedScripts/Windows/DotNet/install_dotnet_45.ps1", upload_path: "C:/tmp/install_dotnet_45"
+  # a restart occurs here
+  config.vm.provision "shell", path: "../SharedScripts/Windows/WindowsUpdates/win2008r2_sp1.ps1", upload_path: "C:/tmp/win2008r2_sp1"
+  #config.vm.provision "shell", inline: "Start-Sleep -Seconds 180"
+  #config.vm.provision "shell", path: "../SharedScripts/Windows/WindowsUpdates/win2008r2_sp2.ps1", upload_path: "C:/tmp/win2008r2_sp2"
+  #config.vm.provision "shell", path: "../SharedScripts/Windows/ManagementFramework5/install_wmf5.ps1", upload_path: "C:/tmp/install_wmf5"
+
+end

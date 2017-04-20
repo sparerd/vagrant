@@ -1,11 +1,9 @@
-# NOTE: this install will likely restart the machine
-
 # To be PS 2.0 compatible, dont use Invoke-WebRequest
 
-$packageName = "DotNet4_5.exe"
-$downloadUrl = "https://download.microsoft.com/download/B/A/4/BA4A7E71-2906-4B2D-A0E1-80CF16844F5F/dotNetFx45_Full_setup.exe"
+$packageName = "Win2008r2_SP1.exe"
+$downloadUrl = "https://download.microsoft.com/download/0/A/F/0AFB5316-3062-494A-AB78-7FB0D4461357/windows6.1-KB976932-X64.exe"
 $targetFile = "C:\tmp\$packageName"
-$fileArgs = @("/passive")
+$fileArgs = @("/unattend","/norestart")
 
 
 # Download installer
