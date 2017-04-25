@@ -14,6 +14,5 @@ Vagrant.configure("2") do |config|
 	config.vm.provision "shell", path: "../SharedScripts/Windows/SystemConfig/disable_uac.ps1"
 	config.vm.provision "shell", path: "../SharedScripts/Windows/DotNet/install_dotnet_40.ps1"
 	# a restart occurs here
-	config.vm.provision "shell", path: "../SharedScripts/Windows/WindowsUpdates/win2008r2_sp1.ps1"
 
 end
