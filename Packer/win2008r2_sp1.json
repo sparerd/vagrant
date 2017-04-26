@@ -3,8 +3,8 @@
   "variables": {
     "guest_additions_mode": "attach",
     "headless": "true",
-    "iso_checksum": "DE5EB0C5DB8BA35DAFB1E2B775BBA0BA98D0D3E0",
-    "iso_url": "https://download.microsoft.com/download/D/D/B/DDB17DC1-A879-44DD-BD11-C0991D292AD7/6001.18000.080118-1840_x86fre_Server_en-us-KRMSFRE_EN_DVD.iso"
+    "iso_checksum": "BEED231A34E90E1DD9A04B3AFABEC31D62CE3889",
+    "iso_url": "https://download.microsoft.com/download/7/5/E/75EC4E54-5B02-42D6-8879-D8D3A25FBEF7/7601.17514.101119-1850_x64fre_server_eval_en-us-GRMSXEVAL_EN_DVD.iso"
   },
   "builders": [
     {
