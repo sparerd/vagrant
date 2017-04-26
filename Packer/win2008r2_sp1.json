@@ -1,5 +1,6 @@
 {
   "_comment": "Great tutorial from Matt Wrock here: http://www.hurryupandwait.io/blog/creating-windows-base-images-for-virtualbox-and-hyper-v-using-packer-boxstarter-and-vagrant",
+  "_comment2": "AutoUnattend.xml reference: https://technet.microsoft.com/en-us/library/cc749204(v=ws.10).aspx",
   "variables": {
     "guest_additions_mode": "attach",
     "headless": "true",
