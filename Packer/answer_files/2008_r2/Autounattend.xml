@@ -53,6 +53,12 @@
 			</DiskConfiguration>
 			<ImageInstall>
 				<OSImage>
+					<InstallFrom> 
+                        <MetaData wcm:action="add"> 
+                            <Key>/IMAGE/NAME</Key> 
+                            <Value>Windows Server 2008 R2 SERVERSTANDARD</Value> 
+                        </MetaData> 
+                    </InstallFrom>
 					<InstallTo>
 						<DiskID>0</DiskID>
 						<PartitionID>2</PartitionID>
@@ -69,6 +75,7 @@
 			<EnableFirewall>true</EnableFirewall>
 		</component>
 	</settings>
+
 	<settings pass="generalize">
 		<component name="Microsoft-Windows-Security-SPP" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 			<SkipRearm>1</SkipRearm>
@@ -78,6 +85,7 @@
 			<DoNotCleanUpNonPresentDevices>false</DoNotCleanUpNonPresentDevices>
 		</component>
 	</settings>
+
 	<settings pass="specialize">
 		<component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-ServerManager-SvrMgrNc" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
 			<DoNotOpenServerManagerAtLogon>true</DoNotOpenServerManagerAtLogon>
@@ -89,15 +97,10 @@
 		<component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-OutOfBoxExperience" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
 			<DoNotOpenInitialConfigurationTasksAtLogon>true</DoNotOpenInitialConfigurationTasksAtLogon>
 		</component>
+		<component name="Microsoft-Windows-Security-SPP-UX" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<SkipAutoActivation>true</SkipAutoActivation>
+		</component>
 	</settings>
-
-
-
-
-
-
-
-
 
 	<settings pass="oobeSystem">
 		<component name="Microsoft-Windows-International-Core" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
