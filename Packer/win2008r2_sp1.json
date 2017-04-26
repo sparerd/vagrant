@@ -1,0 +1,34 @@
+{
+  "_comment": "Great tutorial from Matt Wrock here: http://www.hurryupandwait.io/blog/creating-windows-base-images-for-virtualbox-and-hyper-v-using-packer-boxstarter-and-vagrant",
+  "variables": {
+    "guest_additions_mode": "attach",
+    "headless": "true",
+    "iso_checksum": "DE5EB0C5DB8BA35DAFB1E2B775BBA0BA98D0D3E0",
+    "iso_url": "https://download.microsoft.com/download/D/D/B/DDB17DC1-A879-44DD-BD11-C0991D292AD7/6001.18000.080118-1840_x86fre_Server_en-us-KRMSFRE_EN_DVD.iso"
+  },
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+      "vboxmanage": [
+        [ "modifyvm", "{{.Name}}", "--memory", "2048" ],
+        [ "modifyvm", "{{.Name}}", "--vram", "48" ],
+        [ "modifyvm", "{{.Name}}", "--cpus", "2" ]
+      ],
+      "guest_additions_mode": "{{ user `guest_additions_mode` }}",
+      "guest_additions_path": "C:/users/vagrant/VBoxGuestAdditions.iso",
+      "guest_os_type": "Windows2008_64",
+      "headless": "{{ user `headless` }}",
+      "iso_url": "{{ user `iso_url` }}",
+      "iso_checksum": "{{ user `iso_checksum` }}",
+      "iso_checksum_type": "sha1",
+      "communicator": "winrm",
+      "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "12h",
+      "shutdown_command": "shutdown /s /t 0 /c \"Packer Shutdown\"",
+      "floppy_files": [
+        "answer_files/2008_r2/Autounattend.xml"
+      ]
+    }
+  ]
+}
